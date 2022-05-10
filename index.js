@@ -12,14 +12,14 @@ const linkExtractor = (text) => {
     while ((temp = regex.exec(text)) !== null) {
         arrayResultados.push({ [temp[1]]: temp[2] })
     }
-    return arrayResultados
+    return arrayResultados.length === 0 ? chalk.red('Não há links no texto que foi informado!') : arrayResultados
 }
 
 export default async function findFile(filePath) {
     try {
         const encoding = 'utf-8'
         const text = await fs.promises.readFile(filePath, encoding)
-        console.log(linkExtractor(text))
+        return linkExtractor(text)
     } catch (error) {
         errorTreatment(error)
     }
