@@ -7,7 +7,7 @@ const path = process.argv
 const processedText = async (filePath) => {
     const result = await findFile(filePath[2])
     if (path[3] == 'validar') {
-        console.log(chalk.yellow('Links validados:', validatingURL(result)))
+        console.log(chalk.yellow('Links validados:', await validatingURL(result)))
     } else {
         console.log(chalk.bold('Lista de links:'), result)
     }
